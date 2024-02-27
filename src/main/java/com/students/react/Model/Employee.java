@@ -36,6 +36,10 @@ public class Employee {
     }
 
 
+    public Employee(int i, String string, String string2, String string3) {
+        //TODO Auto-generated constructor stub
+    }
+
     public long getId() {
         return this.id;
     }
@@ -43,6 +47,7 @@ public class Employee {
     public void setId(long id) {
         this.id = id;
     }
+
 
     public String getEmail() {
         return this.email;
@@ -52,11 +57,11 @@ public class Employee {
         this.email = email;
     }
 
-    public String getfirstName() {
+    public String getFirstName() {
         return this.firstName;
     }
 
-    public void setfirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -68,6 +73,8 @@ public class Employee {
         this.lastName = lastName;
     }
 
+
+   
 
 
     
