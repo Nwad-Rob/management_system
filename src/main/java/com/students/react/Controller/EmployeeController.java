@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.students.react.Model.Employee;
 import com.students.react.Repository.EmployeeRepository;
 import com.students.react.SpringException.ResourceNotFoundException;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,8 +38,9 @@ public List<Employee> getDetails(){
 }
 
 //Create Employees
+@ResponseStatus(HttpStatus.CREATED)
 @PostMapping("/employees")
-public ResponseEntity<Employee> createEmployee(@RequestBody Employee e) {
+public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee e) {
     Employee emp =  empRepo.save(e);
     return ResponseEntity.ok(emp);
 }
@@ -44,17 +48,14 @@ public ResponseEntity<Employee> createEmployee(@RequestBody Employee e) {
 //Delete Employees
 @DeleteMapping("{id}")
 public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id){
-     Employee e = empRepo.findById(id).
-     orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id" + id));
-
-     empRepo.delete(e);
+     empRepo.deleteById(id);
      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 }
 
 //Update Employees
 
 @PutMapping("employees/{id}")
-public ResponseEntity<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employeeDetails){
+public ResponseEntity<Employee> updateEmployee(@PathVariable long id, @RequestBody @Valid Employee employeeDetails){
      Employee e = empRepo.findById(id)
      .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with Id" + id));
 
