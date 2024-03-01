@@ -77,7 +77,7 @@ public class EmployeeControllerTest {
         mockMvc.perform(get("/api/v1"))
                .andExpect(status().isNotFound()); // Expecting a 404 Not Found response
     }
-    //test
+    //tested
     @Test
     public void isValid() throws Exception{
        when(empRepo.findById(1)).thenReturn(Optional.of(empList.get(0)));
