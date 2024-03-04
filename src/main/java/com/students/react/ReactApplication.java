@@ -12,7 +12,7 @@ public class ReactApplication {
 		SpringApplication app =new SpringApplication(ReactApplication.class);
 
 		//Set the active profiles programatically
-		app.setAdditionalProfiles("test");
+		app.setAdditionalProfiles("dev");
 		app.run(args);
 
 		
